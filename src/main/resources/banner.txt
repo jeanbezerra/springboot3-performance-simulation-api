@@ -1,0 +1,18 @@
+
+ __   __                            _____                     _             _       
+ \ \ / /_ _ _ __ ___   __ _ _ __   |_   _|__  ___ _ __   ___ | | ___   __ _(_) __ _ 
+  \ V / _` | '_ ` _ \ / _` | '_ \    | |/ _ \/ __| '_ \ / _ \| |/ _ \ / _` | |/ _` |
+   | | (_| | | | | | | (_| | | | |   | |  __/ (__| | | | (_) | | (_) | (_| | | (_| |
+   |_|\__,_|_| |_| |_|\__,_|_| |_|   |_|\___|\___|_| |_|\___/|_|\___/ \__, |_|\__,_|
+                                                                      |___/                 
+   
+   :: ${info.app.description} - ${info.app.name} ::
+   :: Git SCM - Build Version: ${info.git.build.version} ::
+   :: Git SCM - Build Time: ${info.git.build.time} ::
+   :: Git SCM - Commit ID (Abbrev): ${info.git.commit.id.abbrev} ::
+   :: Git SCM - Commit ID (Full): ${info.git.commit.id.full} ::
+   :: Version: ${info.app.version} ::
+   :: Encoding: ${info.app.encoding} ::
+   :: Java Version: ${info.app.java.version} ::
+   :: Spring Boot: ${info.app.spring-boot.version} ::
+   :: Running on port ${server.port} ::
