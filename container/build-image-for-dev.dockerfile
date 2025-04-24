@@ -27,6 +27,7 @@ ENV TZ=America/Sao_Paulo
 ########################################
 
 EXPOSE 443/tcp
+EXPOSE 8081/tcp
 
 ########################################
 ## Custom Labels
@@ -58,6 +59,8 @@ RUN mkdir -p /opt/software/
 RUN mkdir -p /opt/software/java/
 RUN mkdir -p /opt/software/logs/
 RUN mkdir -p /opt/software/configs/
+RUN mkdir -p /opt/software/dumps/
+RUN mkdir -p /opt/software/scripts/
 
 ########################################
 ### Workdir
@@ -83,10 +86,12 @@ RUN rm -rf /var/cache/apk/*
 ########################################
 
 COPY target/app.jar /opt/software/java/
+COPY container/on-oom.sh /opt/software/scripts/
+RUN chmod +x /opt/software/scripts/on-oom.sh
 
 ########################################
 ### Execution
 ########################################
 
+ENTRYPOINT ["java", "-Xms512m", "-Xmx1024m", "-XX:+UseG1GC", "-XX:+UseContainerSupport", "-XX:+HeapDumpOnOutOfMemoryError", "-XX:HeapDumpPath=/opt/software/dumps/heapdump-%p.hprof", "-XX:OnOutOfMemoryError=bash /opt/software/scripts/on-oom.sh", "-jar", "/opt/software/java/app.jar", "--spring.profiles.active=prod" ]
 #CMD ["/bin/bash","-c","tail -f /dev/null"]
-CMD ["/bin/sh","-c","java -jar /opt/software/java/app.jar --spring.profiles.active=prod -DXms512mb -DXmx1024mb"]
